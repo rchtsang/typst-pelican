@@ -92,13 +92,12 @@
   }
 
   // build article html
-  html.elem("html")[
-    #html.elem("head")[
+  html.html[
+    #html.head[
       #for (field, value) in metadata {
-        let attrs = (name: field, content: value);
-        [#html.elem("meta", attrs: attrs)]
+        [#html.meta(name: field, content: value)]
       }
     ]
-    #html.elem("body", doc)
+    #html.body(doc)
   ]
 }
