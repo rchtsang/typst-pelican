@@ -82,6 +82,12 @@
     metadata.url = url
   }
 
+  // show rules
+  show math.equation: it => {
+    show: if it.block { it => it } else { box }
+    html.frame(it)
+  }
+
   // build article html
   html.elem("html")[
     #html.elem("head")[
