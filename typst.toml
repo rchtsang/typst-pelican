@@ -1,0 +1,11 @@
+[package]
+name = "typst-pelican"
+version = "0.1.0"
+entrypoint = "src/lib.typ"
+authors = ["Ryan Tsang"]
+description = "building html for pelican"
+repository = "https://github.com/rchtsang/typst-pelican"
+compiler = "0.14.0"
+categories = ["utility"]
+keywords = ["static-site-generation"]
+
