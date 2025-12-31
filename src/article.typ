@@ -49,21 +49,24 @@
     authors.push(author)
   }
 
+  let datefmt = "[year]-[month]-[day] [hour]:[minute]"
+
   // build metadata
   let metadata = (:)
   metadata.title = title
-  metadata.date = date
-  metadata.modified = modified
+  metadata.date = date.display(datefmt)
+
+  metadata.modified = modified.display(datefmt)
   metadata.slug = slug
-  metadata.authors = authors
+  metadata.authors = authors.join(", ")
   
   if tags != none {
     assert_type("tags", tags, array)
-    metadata.tags = tags
+    metadata.tags = tags.join(", ")
   }
   if keywords != none {
     assert_type("keywords", keywords, array)
-    metadata.keywords = keywords
+    metadata.keywords = keywords.join(", ")
   }
   if category != none {
     assert_type("category", category, str)
