@@ -28,7 +28,7 @@
     slug == none,
     (author == none) and (authors.len() == 0),
   ).fold(false, (acc, cond) => acc or cond)
-  assert(missing_required,
+  assert(not missing_required,
     message: "required arguments: (`title`,`date`,`slug`,`author`/`authors`)")
   assert_type("title", title, str)
   assert_type("date", date, datetime)
@@ -49,14 +49,12 @@
     authors.push(author)
   }
 
-  let datefmt = "[year]-[month]-[day] [hour]:[minute]"
-
   // build metadata
   let metadata = (:)
   metadata.title = title
-  metadata.date = date.display(datefmt)
+  metadata.date = date.display()
 
-  metadata.modified = modified.display(datefmt)
+  metadata.modified = modified.display()
   metadata.slug = slug
   metadata.authors = authors.join(", ")
   
