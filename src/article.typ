@@ -4,7 +4,7 @@
 #let article(
   title: none,
   date: none,
-  modified: datetime.today(),
+  modified: none,
   tags: none,
   keywords: none,
   category: none,
@@ -22,18 +22,6 @@
 ) = {
   // check required arguments
   assert_type("authors", authors, array)
-  let missing_required = (
-    title == none,
-    date == none,
-    slug == none,
-    (author == none) and (authors.len() == 0),
-  ).fold(false, (acc, cond) => acc or cond)
-  assert(not missing_required,
-    message: "required arguments: (`title`,`date`,`slug`,`author`/`authors`)")
-  assert_type("title", title, str)
-  assert_type("date", date, datetime)
-  assert_type("modified", modified, datetime)
-  assert_type("slug", slug, str)
   assert(not ((author != none) and (authors.len() > 0)),
     message: "`author` and `authors` are mutually exclusive")
   assert_type("lang", lang, str)
@@ -51,13 +39,30 @@
 
   // build metadata
   let metadata = (:)
-  metadata.title = title
-  metadata.date = date.display()
 
-  metadata.modified = modified.display()
-  metadata.slug = slug
-  metadata.authors = authors.join(", ")
-  
+  metadata.lang = lang
+  metadata.status = status
+  metadata.template = template
+
+  if authors.len() > 0 {
+    metadata.authors = authors.join(", ")
+  }
+  if title != none {
+    assert_type("title", title, str)
+    metadata.title = title
+  }
+  if date != none {
+    assert_type("date", date, datetime)
+    metadata.date = date.display()
+  }
+  if modified != none {
+    assert_type("modified", modified, datetime)
+    metadata.modified = modified.display()
+  }
+  if slug != none {
+    assert_type("slug", slug, str)
+    metadata.slug = slug
+  }
   if tags != none {
     assert_type("tags", tags, array)
     metadata.tags = tags.join(", ")
@@ -73,6 +78,9 @@
   if summary != none {
     assert_type("summary", summary, str)
     metadata.summary = summary
+  }
+  if translation {
+    metadata.translation = str(translation)
   }
   if save_as != none {
     assert_type("save_as", save_as, str)
