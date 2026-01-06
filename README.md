@@ -39,20 +39,20 @@ locations depending on your system (see typst's readme on
 // for description of how fields are used.
 // all fields are used only for metadata and do not affect doc contents
 #show doc: article(
-  title: "my title",                // required
-  date: "YYYY-MM-DD HH:SS",         // required
-  modified: "YYYY-MM-DD HH:SS",     // default: current data
+  title: "my title",                // default: none
+  date: "YYYY-MM-DD HH:SS",         // default: none
+  modified: "YYYY-MM-DD HH:SS",     // default: none
   tags: ("tag1", "tag2", "tag3"),   // default: none
   keywords: ("kw1", "hw2"),         // default: none
   category: "examples",             // default: none
-  slug: "typst-pelican-example",    // required
-  author: "ryan tsang",             // `author` or `authors` required
+  slug: "typst-pelican-example",    // default: none
+  author: "ryan tsang",             // `author` xor `authors`
   // authors: ("ryan tsang", "john doe"),
   summary: "a brief description",   // default: none
   lang: "en",                       // default: "en"
   translation: false,               // default: false
   status: "published",              // default: "draft"
-  template: "index",                // default: "article"
+  template: "page",                 // default: "article"
   save_as: "relative/path/to/file", // default: none
   url: "https://example.com/demo",  // default: none
   doc,
