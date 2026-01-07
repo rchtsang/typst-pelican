@@ -17,3 +17,10 @@
   }
   content
 }
+
+// embedded css
+#let embed-css(content) = {
+  show raw.where(lang: "css"): it => {
+    html.style(it.text)
+  }
+}

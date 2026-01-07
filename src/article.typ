@@ -17,12 +17,15 @@
   status: "draft",
   template: "article",
   save_as: none,
+  styles: (),
+  scripts: (),
   url: none,
-  head: none,
   doc,
 ) = {
   // check required arguments
   assert_type("authors", authors, array)
+  assert_type("styles", styles, array)
+  assert_type("scripts", scripts, array)
   assert(not ((author != none) and (authors.len() > 0)),
     message: "`author` and `authors` are mutually exclusive")
   assert_type("lang", lang, str)
@@ -91,6 +94,12 @@
     assert_type("url", url, str)
     metadata.url = url
   }
+  if styles.len() > 0 {
+    metadata.styles = styles.join(",")
+  }
+  if scripts.len() > 0 {
+    metadata.scripts = scripts.join(",")
+  }
 
   // show rules
   show math.equation: it => {
@@ -103,10 +112,6 @@
     #html.head[
       #for (field, value) in metadata {
         [#html.meta(name: field, content: value)]
-      }
-      #if head != none {
-        assert_type("head", head, content)
-        head
       }
     ]
     #html.body(doc)
