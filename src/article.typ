@@ -18,6 +18,7 @@
   template: "article",
   save_as: none,
   url: none,
+  head: none,
   doc,
 ) = {
   // check required arguments
@@ -102,6 +103,10 @@
     #html.head[
       #for (field, value) in metadata {
         [#html.meta(name: field, content: value)]
+      }
+      #if head != none {
+        assert_type("head", head, content)
+        head
       }
     ]
     #html.body(doc)
