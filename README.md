@@ -33,12 +33,12 @@ locations depending on your system (see typst's readme on
 ## usage
 
 ```typst
-#import "@local/typst-pelican:0.1.0": *
+#import "@local/typst-pelican:0.1.0" as pelican
 
 // see https://docs.getpelican.com/en/latest/content.html
 // for description of how fields are used.
 // all fields are used only for metadata and do not affect doc contents
-#show doc: article(
+#show doc: pelican.article(
   title: "my title",                // default: none
   date: "YYYY-MM-DD HH:SS",         // default: none
   modified: "YYYY-MM-DD HH:SS",     // default: none
@@ -51,10 +51,12 @@ locations depending on your system (see typst's readme on
   summary: "a brief description",   // default: none
   lang: "en",                       // default: "en"
   translation: false,               // default: false
-  status: "published",              // default: "draft"
+  status: "draft",                  // default: "published"
   template: "page",                 // default: "article"
   save_as: "relative/path/to/file", // default: none
   url: "https://example.com/demo",  // default: none
+  styles: ("custom.css",),          // default: ()
+  scripts: ("custom.js",),          // default: ()
   doc,
 )
 ```

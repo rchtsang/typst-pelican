@@ -1,2 +1,2 @@
 #import "article.typ": article
-#import "utils.typ": embed-js, embed-css
+#import "utils.typ" as utils

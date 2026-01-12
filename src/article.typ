@@ -14,7 +14,7 @@
   summary: none,
   lang: "en",
   translation: false,
-  status: "draft",
+  status: "published",
   template: "article",
   save_as: none,
   styles: (),
